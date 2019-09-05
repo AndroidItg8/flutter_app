@@ -45,9 +45,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final ColumnWidget columnWidget= new ColumnWidget();
-
-
 
   void _incrementCounter() {
     setState(() {
@@ -95,17 +92,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('images/demo.jpg',
+            Image.asset(
+              'images/demo.jpg',
               width: 600,
               height: 240,
               fit: BoxFit.cover,
             ),
             titleSection,
             textSection,
+            buttonSection
           ],
-
         ),
-
       ),
 
       floatingActionButton: FloatingActionButton(
@@ -114,17 +111,23 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-
   }
 
-  Widget buttonSection = Container(
 
+  Widget buttonSection =
+  Container(
+    margin: const EdgeInsets.all(4),
+    padding: const EdgeInsets.all(4),
+    decoration: myBoxDecoration(),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+
+
       children: [
-//       _buildButtonColumn(Colors.blue, Icons.call, 'Call'),
-//        _buildButtonColumn(Colors.blue, Icons.near_me, 'Near'),
-//        _buildButtonColumn(Colors.blue, Icons.share, 'Share'),
+        new ColumnWidget(Colors.blue, Icons.call, 'Call'),
+        new ColumnWidget(Colors.blue, Icons.near_me, 'Near'),
+        new ColumnWidget(Colors.blue, Icons.share, 'Share'),
       ],
     ),
   );
@@ -141,20 +144,22 @@ class _MyHomePageState extends State<MyHomePage> {
       softWrap: true,
     ),
   );
-  Widget _listSection(){
+
+  Widget _listSection() {
     return new ListView.builder(
       itemBuilder: (context, position) {
         return Card(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(position.toString(), style: TextStyle(fontSize: 22.0),),
+            child: Text(
+              position.toString(),
+              style: TextStyle(fontSize: 22.0),
+            ),
           ),
         );
-      },);
-
+      },
+    );
   }
-
-
 
   Widget titleSection = Container(
       padding: const EdgeInsets.all(20),
@@ -190,13 +195,52 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         Text('30'),
       ]));
+
+  BoxDecoration myBoxDecoration(){
+    return BoxDecoration(
+      border:Border(
+        left:BorderSide(
+            color:Colors.black38,
+            width: 1.0
+
+        ),
+        top:BorderSide(
+            color:Colors.lightBlueAccent,
+            width: 1.0
+        ),
+        right:BorderSide(
+            color:Colors.amber,
+            width: 1.0
+        ),
+        bottom: BorderSide(
+          color: Colors.blueAccent,
+          width: 1.0,
+
+
+        ),
+      ),
+    );
+  }
+
+
 }
 
 class ColumnWidget extends StatelessWidget {
+  Color color;
+
+  IconData icon;
+  String label;
+
+  ColumnWidget(MaterialColor color, IconData icon, String label) {
+    this.color = color;
+    this.icon = icon;
+    this.label = label;
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return null;
+    return _buildButtonColumn(color, icon, label);
   }
 
   Column _buildButtonColumn(Color color, IconData icon, String label) {
@@ -219,4 +263,50 @@ class ColumnWidget extends StatelessWidget {
       ],
     );
   }
+
+
+
+
+
+
+
 }
+
+class BorderWidget extends StatelessElement{
+  BorderWidget(StatelessWidget widget) :
+        super(widget);
+
+
+  BoxDecoration myBoxDecoration(){
+    return BoxDecoration(
+      border:Border(
+        left:BorderSide(
+            color:Colors.black38,
+            width: 1.0
+
+        ),
+        top:BorderSide(
+            color:Colors.lightBlueAccent,
+            width: 1.0
+        ),
+        right:BorderSide(
+            color:Colors.amber,
+            width: 1.0
+        ),
+        bottom: BorderSide(
+          color: Colors.blueAccent,
+          width: 1.0,
+
+
+        ),
+      ),
+    );
+  }
+
+
+}
+
+
+
+
+
