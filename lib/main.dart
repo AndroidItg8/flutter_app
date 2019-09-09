@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/secondpage.dart';
 
 void main() => runApp(MyApp());
 
@@ -57,6 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+    void _navigatetosecondpage(){
+      setState((){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => secondpage()),
+      );
+    });
+    }
+
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -106,8 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: _navigatetosecondpage,
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
@@ -118,13 +128,35 @@ class _MyHomePageState extends State<MyHomePage> {
   Container(
     margin: const EdgeInsets.all(4),
     padding: const EdgeInsets.all(4),
-    decoration: myBoxDecoration(),
+    decoration:BoxDecoration(
+      border:Border(
+  left:BorderSide(
+  color:Colors.black38,
+      width: 1.0
+
+  ),
+      top:BorderSide(
+  color:Colors.lightBlueAccent,
+  width: 1.0
+  ),
+  right:BorderSide(
+  color:Colors.amber,
+  width: 1.0
+  ),
+  bottom: BorderSide(
+  color: Colors.blueAccent,
+  width: 1.0,
+
+
+  ),
+  )),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
 
 
       children: [
+
         new ColumnWidget(Colors.blue, Icons.call, 'Call'),
         new ColumnWidget(Colors.blue, Icons.near_me, 'Near'),
         new ColumnWidget(Colors.blue, Icons.share, 'Share'),
@@ -162,6 +194,28 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget titleSection = Container(
+      decoration:BoxDecoration(
+          border:Border(
+            left:BorderSide(
+                color:Colors.black38,
+                width: 1.0
+
+            ),
+            top:BorderSide(
+                color:Colors.lightBlueAccent,
+                width: 1.0
+            ),
+            right:BorderSide(
+                color:Colors.amber,
+                width: 1.0
+            ),
+            bottom: BorderSide(
+              color: Colors.blueAccent,
+              width: 1.0,
+
+
+            ),
+          )),
       padding: const EdgeInsets.all(20),
       child: Row(children: <Widget>[
         Expanded(
@@ -171,6 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               /*2*/
               Container(
+
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Text(
                   'Oeschinen Lake Campground',
@@ -247,10 +302,12 @@ class ColumnWidget extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
+
       children: <Widget>[
         Icon(icon, color: color),
         Container(
           margin: const EdgeInsets.only(top: 8),
+
           child: Text(
             label,
             style: TextStyle(
